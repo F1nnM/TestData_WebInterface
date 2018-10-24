@@ -1,0 +1,156 @@
+#popup {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2000;
+}
+#popupbg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+}
+#popupbox {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 50%;
+    height: 50%;
+    background-color: #DDD;
+    position: relative;
+    padding: 20px;
+}
+#popupContent {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
+    line-height: 1.5em;
+}
+#loadingBarContainer {
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    height: 4px;
+    width: 50%;
+    background-color: #aaa;
+    overflow: hidden;
+}
+#loadingBar {
+    position: relative;
+    width: 50%;
+    height: 4px;
+    background-color: #6200ee;
+    animation: move 1.5s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+}
+@keyframes move {
+    from {
+        left: -60%;
+    }
+    to {
+        left: 110%;
+    }
+}
+#errordesc{
+    color: #f00;
+}
+#content {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding: 40px;
+    display: flex;
+}
+#options {
+    background-color: #ecf0f1;
+    height: 100%;
+    width: 400px;
+    margin-right: 40px;
+    padding: 20px;
+    text-align: left;
+    overflow: auto;
+}
+#options *{
+    width: 100%;
+    font-size: 22px;
+}
+hr {
+    width: 0;
+    height: 0;
+    border: 1px solid #c4d1d4;
+}
+#options input, #options select, #options textarea, #options button {
+    margin-top: 5px;
+}
+#options textarea{
+    resize: vertical;
+}
+#canvas-wrapper {
+    height: 100%;
+    width: 50px;
+    flex-grow: 1;
+    background-color: #444;
+    overflow-x: scroll;
+    position: relative;
+}
+canvas#data {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+    position: absolute;
+}
+canvas#axes {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+#smoothing {
+    position: fixed;
+    top: 60px;
+    right: 60px;
+    background-color: #fff;
+    padding: 5px;
+    opacity: 0.2;
+    transition: 0.3s;
+}
+#smoothing:hover {
+    opacity: 1;
+}
+#smoothrate {
+    margin-top: 5px;
+}
+#tablewrapper {
+    width: 100%;
+    height: 100%;
+}
+#materialtable {
+    border-collapse: collapse;
+}
+#materialtable th, #materialtable td{
+    border: 1px solid #444;
+    padding: 0.5em;
+    text-align: left;
+}
+#materialtable tbody{
+    overflow: auto;
+    display: block;
+    height: calc(50vh - 40px - 2em);
+    width: calc(50vw - 40px);
+    margin-top: 0px;
+    cursor: pointer;
+}
+#materialtable thead{
+    display: block;
+}
+#materialtable tbody tr:first-child td{
+    border-top: none;
+}
+#materialtable tbody tr:hover{
+    background-color: #AAA;
+}
