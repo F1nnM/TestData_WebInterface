@@ -1,0 +1,73 @@
+Um die Software verwenden zu können werden ein Datenbankserver und ein Webserver benötigt.
+Empfohlen sind MariaDB und Apache HTTP Server.
+
+Die Inhalte des Ordners HTML müssen in das Hauptverzeichnis oder ein Unterverzeichnis des Webservers gelegt werden.
+Bei Apache unter Linux ist das das Verzeichnis /var/www/html/ .
+
+Der Datenbankserver muss eine Datenbank mit Namen "Belastungtests" enthalten.
+Um die benötigten Tabellen zu erzeugen, müssen folgende Statements auf diese Datenbank angewendet werden:
+
+Tabelle experiments:
+-------------------------------------------------
+CREATE TABLE `experiments` (
+  `ID` int(11) NOT NULL,
+  `Type` enum('Zug','Scher','Benutzerdefiniert') NOT NULL,
+  `Material1` int(11) NOT NULL,
+  `Material2` int(11) NOT NULL,
+  `Creator` varchar(20) NOT NULL,
+  `Description` varchar(2000) NOT NULL DEFAULT '',
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Newton` varchar(50) NOT NULL,
+  `Curve` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE `experiments` ADD PRIMARY KEY (`ID`);
+ALTER TABLE `experiments` MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+=================================================
+Tabelle materials:
+-------------------------------------------------
+CREATE TABLE `materials` (
+  `ID` int(11) NOT NULL,
+  `Alias` varchar(191) NOT NULL,
+  `Type` enum('1','2') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE `materials` ADD PRIMARY KEY (`ID`,`Alias`);
+ALTER TABLE `materials` MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+=================================================
+Tabelle users:
+-------------------------------------------------
+CREATE TABLE `users` (
+  `username` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `permission-live` tinyint(1) NOT NULL,
+  `permission-viewAll` tinyint(1) NOT NULL,
+  `permission-viewOwn` tinyint(1) NOT NULL,
+  `permission-settingsTool` tinyint(1) NOT NULL,
+  `permission-settingsUser` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE `users` ADD PRIMARY KEY (`username`);
+=================================================
+
+
+Um den Standartbenutzer 'Admin' mit dem Passwort 'AdminPass' hinzuzufügen, muss der folgende Befehl ausgeführt werden:
+-------------------------------------------------
+INSERT INTO `users` (`username`, `password`, `permission-live`, `permission-viewAll`, `permission-viewOwn`, `permission-settingsTool`, `permission-settingsUser`) VALUES
+('Admin', '$2y$10$W9/0sXcEXPHefo1HVSvVO.qj68AJiZEOP1ziGG5zCMXOAhhyEr5wK', 1, 1, 1, 0, 1);
+-------------------------------------------------
+
+Damit die Software auf die Datenbank zugreifen kann, wird ein Nutzer 'web_user' mit dem Passwort '9C8rVueFDDBDAG6EKYrN' benötigt.
+Dieser sollte volle Berechtigungen über diese Datenbank haben.
+
+Das Login-Daten können geändert werden, indem sie in den folgenden Dateien angepasst werden:
+    ./index.php
+    ./php_helper/addMaterial.php
+    ./php_helper/getCurve.php
+    ./php_helper/updateUser.php (zwei mal)
+    ./php_helper/getMaxID.php
+    ./php_helper/deleteExperiment.php
+    ./php_helper/createuser.php
+    ./php_helper/getExperiments.php
+    ./php_helper/getMaterials.php
+    ./php_helper/savedata.php
+    ./php_helper/getUsers.php
+
+Spätestens nach einem Neustart von Web- und Datenbanksever sollte die Website nun mit einem Browser aufrufbar sein.
