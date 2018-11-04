@@ -8,7 +8,7 @@
         echo $pass;
         $dbhost = "localhost:3306";
         $dbuser = "finn";
-        $dbpass = "f1i1n1n1";
+        $dbpass = "__PASSWORT__";
         $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
         if(! $conn ) {
             http_response_code(500);

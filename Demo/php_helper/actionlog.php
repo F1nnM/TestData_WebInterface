@@ -1,5 +1,9 @@
 <?php
-//used to add a new material or alias to the database
+//used to log all actions by a user
+
+     if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
     require("./checkLogin.php");
 
@@ -19,4 +23,4 @@
     if(!mysqli_query($conn, $sql)){
         http_response_code(500);
     }
-?>
+?> 
