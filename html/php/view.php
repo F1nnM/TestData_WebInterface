@@ -1,4 +1,5 @@
 <?php 
+    //check if a user is logged in
     require("../php_helper/checkLogin.php");
 ?>
 <div id="content">

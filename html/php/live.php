@@ -1,4 +1,5 @@
 <?php
+    //check if a user is logged in
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
@@ -82,6 +83,7 @@
             </div>
             <div id="select_material">
                 <div id="tablewrapper">
+                    <span>Auf die ID klicken, um ein Material auszuwählen; auf den/die Namen klicken, um einen Alias hinzuzufügen</span>
                     <table id="materialtable">
                         <thead>
                             <tr>

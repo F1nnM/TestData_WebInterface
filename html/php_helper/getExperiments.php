@@ -1,22 +1,22 @@
 <?php
+//used to fetch all data (except the curve) of all experiments
     require("./checkLogin.php");
     
+    //log in to database
     $dbhost = "localhost:3306";
     $dbuser = "web_user";
-    $dbpass = "web_pass";
+    $dbpass = "9C8rVueFDDBDAG6EKYrN";
     $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-    mysqli_select_db($conn, "wsem");
+    mysqli_select_db($conn, "Belastungstests");
 
     if(! $conn )  http_response_code(500);
 
+    //depending on the permission query all experiments or only the ones by the logged in user
     if($_SESSION["permission-viewAll"]) $result = mysqli_query($conn, "SELECT `ID`, `Type`, `Material1`, `Material2`, `Creator`, `Description`, `Time`, `Newton` FROM `experiments`;");
     else if($_SESSION["permission-viewOwn"]) $result = mysqli_query($conn, "SELECT `ID`, `Type`, `Material1`, `Material2`, `Creator`, `Description`, `Time`, `Newton` FROM `experiments` WHERE `Creator` = '".$_SESSION["username"]."' ;");
     if(!$result) http_response_code(500);
     $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    //$experiments = [];
-    //foreach ($result as $i => $experiment) {
-    //    $experiments[$experiment["ID"]] = $experiment;
-    //}
+
     echo json_encode($result);
 ?>
 

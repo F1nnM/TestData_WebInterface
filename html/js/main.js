@@ -1,4 +1,11 @@
+//this code is part of the 
 
+
+//disable caching for all jQuery ajax requests
+$.ajaxSetup({ cache: false });
+
+//handler that fires on a change of the hash part of the location
+//loads all required files and excutes/displays them
 window.onhashchange = function(){
     which = location.hash.substr(1);
     if(which == "") return;
@@ -16,9 +23,12 @@ window.onhashchange = function(){
 function reloadLocation(){
     window.onhashchange();
 }
+//function to call for navigating between the pages
+//which is the name of the files without extension
 function changeLocation(which) {
     window.location = "#"+which;
 }
+//function for logging out, destroys the session server-side
 function logout(){
     $.get("./php_helper/logout.php");
     window.location.replace("./");
@@ -30,6 +40,8 @@ function init() {
         window.onhashchange();
     }
 }
+
+//the EventSource for displaying the current server load
 source = new EventSource("./php_helper/getLoad.php");
 source.addEventListener("load", function () {
     $("#load").text(event.data);

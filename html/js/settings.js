@@ -1,1 +1,2 @@
-//existiert damit bei der Navigation keine Fehler auftreten
+//only exists so no errors occur in the navigation
+//settings doesn't require any JS

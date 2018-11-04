@@ -1,1 +1,2 @@
-//existiert damit bei der Navigation keine Fehler auftreten
+//only exists so no errors occur in the navigation
+//menu doesn't require any JS

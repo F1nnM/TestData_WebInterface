@@ -2,9 +2,10 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+    //if no user is logged in redirect to login page
     if(!isset($_SESSION["username"])){
         session_destroy();
-        require("./php_helper/logout.php");
+        header("Location: ./");
     }
 ?>
 <!DOCTYPE html>

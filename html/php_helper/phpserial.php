@@ -1,4 +1,5 @@
 <?php
+//change by Finn: check for permissions
 require("./checkLogin.php");
 
 define ("SERIAL_DEVICE_NOTSET", 0);

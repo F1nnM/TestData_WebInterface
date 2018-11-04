@@ -1,4 +1,5 @@
 <?php
+    //check if a user is logged in
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }

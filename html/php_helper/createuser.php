@@ -1,4 +1,5 @@
 <?php
+    //used to add a new user with no permissions to the database
     require("./checkLogin.php");
 
     if(isset($_POST["user"])&&isset($_POST["pass"])){
@@ -7,12 +8,12 @@
         echo $pass;
         $dbhost = "localhost:3306";
         $dbuser = "web_user";
-        $dbpass = "web_pass";
+        $dbpass = "9C8rVueFDDBDAG6EKYrN";
         $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
         if(! $conn ) {
             http_response_code(500);
         }
-        mysqli_select_db($conn, "wsem");
+        mysqli_select_db($conn, "Belastungstests");
 
         if(!mysqli_query($conn, "INSERT INTO `users` (`username`, `password`) VALUES ('$user', '$pass');")){
             http_response_code(500);

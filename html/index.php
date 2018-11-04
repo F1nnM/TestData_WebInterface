@@ -2,28 +2,37 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+//if user already logged in redirect to menu
 if(isset($_SESSION["username"])) header('Location: ./main.php');
+
+//if user clicked login
 if(isset($_POST["user"])&&isset($_POST["pass"])){
+
+    $pass = $_POST["pass"];
+
     $dbhost = "localhost:3306";
     $dbuser = "web_user";
-    $dbpass = "web_pass";
+    $dbpass = "9C8rVueFDDBDAG6EKYrN";
     $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
     if(! $conn ) {
-        die("0");
+        http_response_code(500);
     }
-    mysqli_select_db($conn, "wsem");
+    mysqli_select_db($conn, "Belastungstests");
 
     $user = mysqli_real_escape_string($conn,$_POST["user"]);
     $res = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `users` WHERE `username` = '$user';"));
 
-    if(password_verify($user, $res["password"])){
+    //check if password matches with database
+    if(password_verify($pass, $res["password"])){
+        //save permissions
         $_SESSION["username"] = $user;
         $_SESSION["permission-live"] = ($res["permission-live"]==true);
         $_SESSION["permission-viewAll"] = ($res["permission-viewAll"]==true);
         $_SESSION["permission-viewOwn"] = ($res["permission-viewOwn"]==true);
         $_SESSION["permission-settingsTool"] = ($res["permission-settingsTool"]==true);
         $_SESSION["permission-settingsUser"] = ($res["permission-settingsUser"]==true);
-        header('Location: ./main.php');
+        header("Location: ./main.php");
     }
 
 }
