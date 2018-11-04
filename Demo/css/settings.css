@@ -1,0 +1,50 @@
+div.button {
+    font-weight: 500;
+    font-size: 150%;
+    background-color: #03A9F4;
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 10px;
+    margin: 20px;
+
+    height: calc(20vh + 64px);
+    width: calc(20vh + 64px);
+}
+
+div.button[state="enabled"]:hover {
+    transform: translateY(-10%);
+}
+
+div.button[state="enabled"]:active {
+    background-color: #2980b9;
+}
+
+#button-container {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    overflow: auto;
+    z-index: -5;
+}
+
+img[id*="button-img"] {
+    height: 20vh;
+    margin-bottom: 15px;
+}
+
+#button-container label {
+    cursor: pointer;
+}
+
+.button[state="disabled"] {
+    background-color: #b1b1b1;
+    cursor: not-allowed;
+}

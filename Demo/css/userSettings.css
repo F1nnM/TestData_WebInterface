@@ -1,0 +1,45 @@
+#content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 40px;
+    background-color: #EEE;
+    background-clip: content-box;
+}
+#tablewrapper {
+    height: 90%;
+    width: 100%;
+    padding: 20px;
+}
+#usertable {
+    font-size: 20px;
+    width: 100%;
+    table-layout: fixed;
+}
+#usertable thead, #usertable tbody {
+    width: 100%;
+}
+#usertable th, #usertable td{
+    border: 1px solid #444;
+    padding: 0.5em;
+    white-space: nowrap;
+}
+#usertable th {
+    background-color: #ccc;
+}
+#usertable tr:nth-child(2n) {
+    background-color: #ddd;
+}
+#usertable td {
+    user-select: none;
+    cursor: pointer;
+}
+#usertable td:first-child{
+    user-select: initial;
+    cursor: initial;
+}
+#buttonwrapper *{
+    font-size: 20px;
+}
